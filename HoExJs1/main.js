@@ -6,12 +6,11 @@ let messege;
 
 // eslint-disable-next-line no-unused-vars
 const PASS_QUESTION = prompt('Enter the password');
-if (PASS_QUESTION === null) {
-  messege = 'Отменено пользователем!';
-  alert(messege);
-}
 if (PASS_QUESTION === ADMIN_PASSWORD) {
   messege = 'Добро пожаловать!';
+  alert(messege);
+} else if (PASS_QUESTION === null) {
+  messege = 'Отменено пользователем!';
   alert(messege);
 } else {
   messege = 'Доступ запрещен, неверный пароль!';
