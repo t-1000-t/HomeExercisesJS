@@ -8,11 +8,9 @@ let messege;
 const PASS_QUESTION = prompt('Enter the password');
 if (PASS_QUESTION === ADMIN_PASSWORD) {
   messege = 'Добро пожаловать!';
-  alert(messege);
 } else if (PASS_QUESTION === null) {
   messege = 'Отменено пользователем!';
-  alert(messege);
 } else {
   messege = 'Доступ запрещен, неверный пароль!';
-  alert(messege);
 }
+alert(messege);
