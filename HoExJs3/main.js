@@ -1,5 +1,7 @@
-const mailDelivery = prompt('Укажите страну: ');
+// eslint-disable-next-line no-alert
+const mailDelivery = prompt('Укажите страну: ', '');
 const country = mailDelivery.toLocaleLowerCase();
+const countryIndexUpper = country[0].toUpperCase() + country.slice(1);
 let result = 0;
 const messegeFinish = 'В вашей стране доставка не доступна';
 const ch = 100;
@@ -9,23 +11,23 @@ const ia = 80;
 const ji = 120;
 switch (country) {
   case 'china':
-    result = `Доставка в ${mailDelivery} будет стоить ${ch} кредитов`;
+    result = `Доставка в ${countryIndexUpper} будет стоить ${ch} кредитов`;
     alert(result);
     break;
   case 'southamerica':
-    result = `Доставка в ${mailDelivery} будет стоить ${sa} кредитов`;
+    result = `Доставка в ${countryIndexUpper} будет стоить ${sa} кредитов`;
     alert(result);
     break;
   case 'australia':
-    result = `Доставка в ${mailDelivery} будет стоить ${as} кредитов`;
+    result = `Доставка в ${countryIndexUpper} будет стоить ${as} кредитов`;
     alert(result);
     break;
   case 'india':
-    result = `Доставка в ${mailDelivery} будет стоить ${ia} кредитов`;
+    result = `Доставка в ${countryIndexUpper} будет стоить ${ia} кредитов`;
     alert(result);
     break;
   case 'jamaica':
-    result = `Доставка в ${mailDelivery} будет стоить ${ji} кредитов`;
+    result = `Доставка в ${countryIndexUpper} будет стоить ${ji} кредитов`;
     alert(result);
     break;
   default:
