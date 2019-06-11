@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-alert
 const mailDelivery = prompt('Укажите страну: ', '');
+// eslint-disable-next-line prefer-const
 const country = mailDelivery.toLocaleLowerCase();
 const countryIndexUpper = country[0].toUpperCase() + country.slice(1);
 let result = 0;
@@ -14,7 +15,7 @@ switch (country) {
     result = `Доставка в ${countryIndexUpper} будет стоить ${ch} кредитов`;
     alert(result);
     break;
-  case 'southamerica':
+  case 'south america':
     result = `Доставка в ${countryIndexUpper} будет стоить ${sa} кредитов`;
     alert(result);
     break;
