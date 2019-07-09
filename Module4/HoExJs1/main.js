@@ -14,7 +14,7 @@ const notepad = {
      */
   },
   saveNote(note) {
-    return this.notes.push(note);
+    this.notes.push(note);
     /*
      * Сохраняет заметку в массив notes
      *
@@ -22,13 +22,13 @@ const notepad = {
      * Возвращает: сохраненную заметку
      */
   },
-  findNoteById(id) {
-    for (const obj of this.notes) {
-      if (obj.id === id) {
-        return obj;
+  findNoteIndexById(id) {
+    for (const i in this.notes) {
+      if (this.notes[i].id === id) {
+        return i;
       }
     }
-    return undefined;
+    return null;
     /*
      * Ищет заметку в массиве notes
      *
@@ -36,35 +36,45 @@ const notepad = {
      * Возвращает: заметку с совпавшим полем id или undefined если ничего не найдено
      */
   },
-  deleteNote(id) {
-    this.notes.splice(this.findNoteById(id), 1);
-    return this;
-    /*
-     * Удаляет заметку по идентификатору из массива notes
-     *
-     * Принимает: идентификатор заметки
-     * Возвращает: ничего
-     */
-  },
-  updateNoteContent(id, updatedContent) {
-    Object.assign(this.findNoteById(id), updatedContent);
-    return this;
-    /*
-     * Обновляет контент заметки
-     * updatedContent - объект с полями вида {имя: значение, имя: значение}
-     * Свойств в объекте updatedContent может быть произвольное количество
-     *
-     * Принимает: идентификатор заметки и объект, полями которого надо обновить заметку
-     * Возвращает: обновленную заметку
-     */
-  },
-  updateNotePriority(id, priority) {
-    for (const obj of this.notes) {
-      if (obj.id === id) {
-        return obj.priority = priority;
+  findNoteById(id) {
+    for (const note of this.notes) {
+      if (note.id === id) {
+        return note;
       }
     }
     return undefined;
+  },
+  deleteNote(id) {
+    this.notes.splice(this.findNoteIndexById(id), 1);
+    // return this;
+    /*
+         * Удаляет заметку по идентификатору из массива notes
+         *
+         * Принимает: идентификатор заметки
+         * Возвращает: ничего
+         */
+  },
+  updateNoteContent(id, updatedContent) {
+    Object.assign(this.findNoteById(id), updatedContent);
+    return this.findNoteById(id);
+    /*
+         * Обновляет контент заметки
+         * updatedContent - объект с полями вида {имя: значение, имя: значение}
+         * Свойств в объекте updatedContent может быть произвольное количество
+         *
+         * Принимает: идентификатор заметки и объект, полями которого надо обновить заметку
+         * Возвращает: обновленную заметку
+         */
+  },
+  updateNotePriority(id, priority) {
+    this.findNoteById(id).priority = priority;
+    console.log(priority);
+    return priority;
+    // for (const obj of this.notes) {
+    //   if (obj.id === id) {
+    //     obj.priority = priority;
+    //     console.log(obj);
+    //     return priority;
   },
   // this.notes = this.notes.map(note => {
   //   if (note.id === id) {
@@ -74,11 +84,11 @@ const notepad = {
   //   return note;
   // })
   /*
-   * Обновляет приоритет заметки
-   *
-   * Принимает: идентификатор заметки и ее новый приоритет
-   * Возвращает: обновленную заметку
-   */
+  * Обновляет приоритет заметки
+  *
+  * Принимает: идентификатор заметки и ее новый приоритет
+  * Возвращает: обновленную заметку
+  */
   filterNotesByQuery(query) {
     newArr = [];
     for (const value of this.notes) {
@@ -101,10 +111,10 @@ const notepad = {
     const newArr = [];
     for (const key of this.notes) {
       if (key.priority === priority) {
-        return newArr.push(key);
+        newArr.push(key);
       }
     }
-    return undefined;
+    return newArr;
     /*
      * Фильтрует массив заметок по значению приоритета
      * Если значение priority совпадает с приоритетом заметки - она подходит
@@ -148,7 +158,7 @@ notepad.saveNote({
   priority: Priority.LOW,
 });
 
-console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!ДО: !!!!!!!!!!!!!!!!!!', notepad.getNotes());
+console.log('ДО', notepad.getNotes());
 
 /*
  * Зима уже близко, пора поднять приоритет на покупку одежды
@@ -156,7 +166,7 @@ console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!ДО: !!!!!!!!!!!!!!!!!!', notepad
 notepad.updateNotePriority('id-4', Priority.NORMAL);
 
 console.log(
-  '******************ПОСЛЕ id-4: ******************',
+  'ПОСЛЕ id-4',
   notepad.getNotes(),
 );
 
