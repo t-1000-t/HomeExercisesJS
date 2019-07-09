@@ -15,6 +15,7 @@ const notepad = {
   },
   saveNote(note) {
     this.notes.push(note);
+    return note;
     /*
      * Сохраняет заметку в массив notes
      *
@@ -114,6 +115,7 @@ const notepad = {
         newArr.push(key);
       }
     }
+    console.log(newArr);
     return newArr;
     /*
      * Фильтрует массив заметок по значению приоритета
