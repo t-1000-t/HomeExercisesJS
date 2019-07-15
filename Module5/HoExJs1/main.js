@@ -1,52 +1,67 @@
-const Notepad = function Notepad(notes = []) {
-  this.getNotes = function () {
-    return notes;
-  };
-  this.saveNote = function (obj) {
-    return notes.push(obj);
-  };
-  this.updateNotePriority = function (id, priority) {
-    for (const note of notes) {
-      if (note.id === id) {
-        note.priority = priority;
-        return notes;
-      }
+function Notepad(notes = []) {
+  // Перенеси свойства и методы объекта notepad в конструктор
+  this.notes = notes;
+}
+
+Notepad.prototype.getNotes = function () {
+  return this.notes;
+};
+
+Notepad.prototype.saveNote = function (obj) {
+  this.notes.push(obj);
+};
+
+Notepad.prototype.updateNotePriority = function (id, priority) {
+  // for (const note of this.notes) {
+  //   if (note.id === id) {
+  //     note.priority = priority;
+  //   }
+  // }
+  this.notes = this.notes.map((note) => {
+    if (note.id === id) {
+      note.priority = priority;
     }
-  };
-  this.filterNotesByQuery = function (query) {
-    newArr = [];
-    for (const value of notes) {
-      const titleLower = value.title.toLowerCase();
-      const bodyLower = value.body.toLowerCase();
-      if (titleLower.includes(query) || bodyLower.includes(query)) {
-        newArr.push(value);
-      }
+    return note;
+  });
+};
+
+Notepad.prototype.filterNotesByQuery = function (query) {
+  // const newArray = [];
+  // this.notepad.filter(elem => elem.title.toLowerCase().includes(query) || elem => elem.body.toLowerCase().includes(query));
+  // return newArray.push(this.elem);
+  newArr = [];
+  for (const value of this.notes) {
+    const titleLower = value.title.toLowerCase();
+    const bodyLower = value.body.toLowerCase();
+    if (titleLower.includes(query) || bodyLower.includes(query)) {
+      newArr.push(value);
     }
-    return newArr;
-  };
-  this.filterNotesByPriority = function (priority) {
-    const newArr = [];
-    for (const key of notes) {
-      if (key.priority === priority) {
-        newArr.push(key);
-      }
+  }
+  return newArr;
+};
+
+Notepad.prototype.filterNotesByPriority = function (priority) {
+  const not = this.notes;
+  const result = not.filter(el => el.priority === priority);
+  return result;
+};
+
+Notepad.prototype.updateNoteContent = function (id, updatedContent) {
+  for (const note of this.notes) {
+    if (note.id === id) {
+      Object.assign(note, updatedContent);
+      return note;
     }
-    return newArr;
-  };
-  this.updateNoteContent = function (id, value) {
-    for (const note of notes) {
-      if (note.id === id) {
-        Object.assign(note, value);
-      }
+  }
+};
+
+Notepad.prototype.deleteNote = function (val) {
+  const not = this.notes;
+  for (const i in not) {
+    if (not[i].id === val) {
+      return not.splice(i, 1);
     }
-  };
-  this.deleteNote = function (id) {
-    for (const i in notes) {
-      if (notes[i].id === id) {
-        notes.splice(i, 1);
-      }
-    }
-  };
+  }
 };
 
 Notepad.Priority = {
@@ -54,7 +69,6 @@ Notepad.Priority = {
   NORMAL: 1,
   HIGH: 2,
 };
-
 
 const initialNotes = [
   {
@@ -161,8 +175,4 @@ console.log(
  * Повторил HTML и CSS, удаляю запись c id-2
  */
 notepad.deleteNote('id-2');
-
-console.log(
-  'Заметки после удаления заметки с id-2: ',
-  notepad.getNotes(),
-);
+console.log('Заметки после удаления с id-2: ', notepad.getNotes());
