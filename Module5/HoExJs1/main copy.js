@@ -1,4 +1,5 @@
 function Notepad(notes = []) {
+  // Перенеси свойства и методы объекта notepad в конструктор
   this.notes = notes;
 }
 
@@ -11,12 +12,23 @@ Notepad.prototype.saveNote = function (obj) {
 };
 
 Notepad.prototype.updateNotePriority = function (id, priority) {
-  res = this.notes.find(note => note.id === id);
-  res.priority = priority;
-  return res;
+  // for (const note of this.notes) {
+  //   if (note.id === id) {
+  //     note.priority = priority;
+  //   }
+  // }
+  this.notes = this.notes.map((note) => {
+    if (note.id === id) {
+      note.priority = priority;
+    }
+    return note;
+  });
 };
 
 Notepad.prototype.filterNotesByQuery = function (query) {
+  // const newArray = [];
+  // this.notepad.filter(elem => elem.title.toLowerCase().includes(query) || elem => elem.body.toLowerCase().includes(query));
+  // return newArray.push(this.elem);
   newArr = [];
   for (const value of this.notes) {
     const titleLower = value.title.toLowerCase();
@@ -29,17 +41,28 @@ Notepad.prototype.filterNotesByQuery = function (query) {
 };
 
 Notepad.prototype.filterNotesByPriority = function (priority) {
-  return this.notes.filter(el => el.priority === priority);
+  const not = this.notes;
+  const result = not.filter(el => el.priority === priority);
+  return result;
 };
 
 Notepad.prototype.updateNoteContent = function (id, updatedContent) {
-  res = this.notes.find(note => note.id === id);
-  Object.assign(res, updatedContent);
-  return res;
+  for (const note of this.notes) {
+    if (note.id === id) {
+      Object.assign(note, updatedContent);
+      return note;
+    }
+  }
 };
 
-Notepad.prototype.deleteNote = function (id) {
-  this.notes.splice(this.notes.filter(el => el.id !== id), 1);
+Notepad.prototype.deleteNote = function (val) {
+  splice(this.notes.findIndex( => val.id === id), 1);
+  // const not = this.notes;
+  // for (const i in not) {
+  //   if (not[i].id === val) {
+  //     return not.splice(i, 1);
+  //   }
+  // }
 };
 
 Notepad.Priority = {
