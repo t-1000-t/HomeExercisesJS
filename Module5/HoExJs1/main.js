@@ -39,7 +39,7 @@ Notepad.prototype.updateNoteContent = function (id, updatedContent) {
 };
 
 Notepad.prototype.deleteNote = function (id) {
-  this.notes.splice(this.notes.filter(el => el.id !== id), 1);
+  this.notes.splice(this.notes.findIndex(el => el.id === id), 1);
 };
 
 Notepad.Priority = {
