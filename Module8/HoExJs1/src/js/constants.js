@@ -15,5 +15,5 @@ const NOTE_ACTIONS = {
   DELETE: 'delete-note',
   EDIT: 'edit-note',
   INCREASE_PRIORITY: 'increase-priority',
-  c: 'decrease-priority',
+  DECREASE_PRIORITY: 'decrease-priority',
 };
