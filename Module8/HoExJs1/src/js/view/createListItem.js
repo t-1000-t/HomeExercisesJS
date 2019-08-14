@@ -6,6 +6,7 @@ const createElement = (tag, className, text = null, id = null) => {
   }
   if (id) {
     element.setAttribute('data-id', id);
+    console.log(element.setAttribute('data-id', id));
   }
   return element;
 };
@@ -13,15 +14,16 @@ const createElement = (tag, className, text = null, id = null) => {
 const createButton = (action, text) => {
   const button = createElement('button', 'action');
   button.setAttribute('data-action', action);
-  const i = createElement('i', 'material-icons action_icon', text);
+  const i = createElement('i', 'material-icons action__icon', text);
   button.append(i);
   return button;
 };
 
-const createListItem = (id, title, body, priority) => {
+const createListItem = ({
+  id, title, body, priority,
+}) => {
   const li = createElement('li', 'note-list__item', null, id);
   const note = createElement('div', 'note');
-  // li.append(note);
   const note__content = createElement('div', 'note__content');
   note__content.append(createElement('h2', 'note__title', title));
   note__content.append(createElement('p', 'note__body', body));
@@ -35,7 +37,7 @@ const createListItem = (id, title, body, priority) => {
 
   note__sectionL.append(createButton(NOTE_ACTIONS.INCREASE_PRIORITY, ICON_TYPES.ARROW_UP));
 
-  note__sectionL.append(createElement('span', 'note_priority', 'Priority: ', priority));
+  note__sectionL.append(createElement('span', 'note__priority', 'Priority: ', priority));
 
   note__sectionR.append(createButton(NOTE_ACTIONS.EDIT, ICON_TYPES.EDIT));
 
