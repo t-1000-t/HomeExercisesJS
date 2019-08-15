@@ -27,23 +27,22 @@ const createListItem = ({
   const note__content = createElement('div', 'note__content');
   note__content.append(createElement('h2', 'note__title', title));
   note__content.append(createElement('p', 'note__body', body));
-  note.append(note__content);
   const note__footer = createElement('footer', 'note__footer');
   const note__sectionL = createElement('section', 'note__section');
   const note__sectionR = createElement('section', 'note__section');
-
 
   note__sectionL.append(createButton(NOTE_ACTIONS.INCREASE_PRIORITY, ICON_TYPES.ARROW_DOWN));
 
   note__sectionL.append(createButton(NOTE_ACTIONS.INCREASE_PRIORITY, ICON_TYPES.ARROW_UP));
 
-  note__sectionL.append(createElement('span', 'note__priority', 'Priority: ', priority));
-
   note__sectionR.append(createButton(NOTE_ACTIONS.EDIT, ICON_TYPES.EDIT));
 
   note__sectionR.append(createButton(NOTE_ACTIONS.DELETE, ICON_TYPES.DELETE));
 
+  note__sectionL.append(createElement('span', 'note__priority', `Priority: ${priority}`));
+
   note__footer.append(note__sectionL, note__sectionR);
-  li.append(note, note__footer);
+  note.append(note__content, note__footer);
+  li.append(note);
   return li;
 };

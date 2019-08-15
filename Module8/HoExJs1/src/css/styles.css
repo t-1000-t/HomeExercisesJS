@@ -86,7 +86,7 @@ textarea {
 }
 
 .note-list__item:not(:nth-child(-n + 3)) {
-  margin-top: 66px;
+  margin-top: 16px;
 }
 
 .note {
