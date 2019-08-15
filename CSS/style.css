@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+/* margin: auto; */
+}
+
+.list {
+  padding: 20px;
+}
+
+.menu {
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: center;
+
+}
+
+.menu_item {
+  margin: 55px;
+  padding: 10px;
+  list-style: none;
+  background-image: linear-gradient(to bottom left, rgb(152, 233, 45), rgb(117, 166, 221));
+}
+
+.link {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-family: 'Dancing Script', cursive;
+  
+  
+}
