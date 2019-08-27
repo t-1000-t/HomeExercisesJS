@@ -22,16 +22,21 @@ Notepad.prototype.updateNotePriority = function (id, priority) {
 };
 
 Notepad.prototype.filterNotesByQuery = function (query) {
-  newArr = [];
-  for (const value of this.notes) {
-    const titleLower = value.title.toLowerCase();
-    const bodyLower = value.body.toLowerCase();
-    if (titleLower.includes(query) || bodyLower.includes(query)) {
-      newArr.push(value);
-    }
-  }
-  return newArr;
+  return this.notes.filter(el => el.title.toLowerCase().includes(query.toLowerCase())
+    || el.body.toLowerCase().includes(query.toLowerCase()));
 };
+
+// Notepad.prototype.filterNotesByQuery = function (query) {
+//   newArr = [];
+//   for (const value of this.notes) {
+//     const titleLower = value.title.toLowerCase();
+//     const bodyLower = value.body.toLowerCase();
+//     if (titleLower.includes(query) || bodyLower.includes(query)) {
+//       newArr.push(value);
+//     }
+//   }
+//   return newArr;
+// };
 
 Notepad.prototype.filterNotesByPriority = function (priority) {
   return this.notes.filter(el => el.priority === priority);
