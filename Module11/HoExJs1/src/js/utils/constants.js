@@ -26,11 +26,11 @@ export const NOTIFICATION_MESSAGES = {
 
 const refs = {
   list: document.querySelector('.note-list'),
-  form: document.querySelector('.note-editor'),
+  form: document.querySelector('button[form="note-editor-form"]'),
   title: document.querySelector('input[name="note_title"]'),
   body: document.querySelector('textarea[name="note_body"]'),
   inputFilter: document.querySelector('.search-form__input'),
-  template: document.querySelector('#list-template'),
+  addButton: document.querySelector('.page-header__button'),
 };
 
-export { refs };
+export default refs;

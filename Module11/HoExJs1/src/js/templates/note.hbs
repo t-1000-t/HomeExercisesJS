@@ -1,11 +1,8 @@
-const template = `{{each notes}}
 <li class="note-list__item" data-id="{{id}}">
   <div class="note">
     <div class="note__content">
       <h2 class="note__title">{{title}}</h2>
-      <p class="note__body">
-        {{body}}
-      </p>
+      <p class="note__body">{{body}}</p>
     </div>
     <footer class="note__footer">
       <section class="note__section">
@@ -28,6 +25,3 @@ const template = `{{each notes}}
     </footer>
   </div>
 </li>
-{{/each}}`;
-
-export default template;
