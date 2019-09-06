@@ -1,4 +1,4 @@
-import { NOTE_ACTIONS, ICON_TYPES } from '../utils/constants';
+import { NOTE_ACTIONS, ICON_TYPES } from '../../utils/constants';
 
 const createElement = (tag, className, text = null, id = null) => {
   const element = document.createElement(tag);

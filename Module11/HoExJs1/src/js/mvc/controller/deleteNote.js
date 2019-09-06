@@ -1,4 +1,8 @@
+import { Notyf } from 'notyf';
 import notepad from '../model';
+import { NOTIFICATION_MESSAGES } from '../../utils/constants';
+
+const notyf = new Notyf();
 
 function deleteNote({ target }) {
   if (target.nodeName !== 'I') return;
@@ -8,9 +12,12 @@ function deleteNote({ target }) {
     const { id } = li.dataset;
     li.remove();
     notepad.deleteNote(id);
+    notyf.success({
+      message: NOTIFICATION_MESSAGES.NOTE_DELETED_SUCCESS,
+      duration: 3000,
+      icon: true,
+    });
   }
 }
-
-// refs.list.addEventListener('click', deleteNote);
 
 export default deleteNote;

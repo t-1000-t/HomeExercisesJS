@@ -1,9 +1,8 @@
-import createListItem from './createListItem';
+import createListItem from './view/createListItem';
 
-const renderNoteList = (listRef, notes) => {
-  listRef.innerHTML = '';
-  listRef.append(...notes.map(e => createListItem(e)));
+const renderNoteList = (Refs, notes) => {
+  Refs.innerHTML = '';
+  Refs.append(...notes.map(e => createListItem(e)));
 };
 
-console.log(renderNoteList);
 export default renderNoteList;
