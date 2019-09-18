@@ -26,8 +26,9 @@ function appNote(e) {
     title,
     body,
   };
-  console.log(notepad.notes);
-  notepad.saveNote(note);
+  notepad.saveNote(note).then(() => {
+    notepad.saveLocalStorage(notepad.notes);
+  });
   e.target.reset();
   addListItem(refs.list, note);
   notyf.success({

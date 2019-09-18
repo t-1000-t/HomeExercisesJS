@@ -1,3 +1,5 @@
+import notepad from '../mvc/model';
+
 function Notepad(notes = []) {
   this.notes = notes;
 }
@@ -10,18 +12,9 @@ Notepad.prototype.saveNote = function (obj) {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(this.notes.push(obj));
-    });
+    }, 0.0005);
   });
 };
-
-// Notepad.prototype.saveNote = function (obj) {
-//   if (notepad.priority) {
-//     this.notes.push(obj);
-//   } else {
-//     obj.priority = PRIORITY_TYPES.LOW;
-//     this.notes.push(obj);
-//   }
-// };
 
 Notepad.prototype.updateNotePriority = function (id, priority) {
   return new Promise(() => {
@@ -29,7 +22,7 @@ Notepad.prototype.updateNotePriority = function (id, priority) {
       res = this.notes.find(note => note.id === id);
       res.priority = priority;
       return res;
-    });
+    }, 0.0005);
   });
 };
 
@@ -37,19 +30,6 @@ Notepad.prototype.filterNotesByQuery = function (val) {
   return this.notes.filter(el => el.title.toLowerCase().includes(val.toLowerCase())
     || el.body.toLowerCase().includes(val.toLowerCase()));
 };
-
-
-// Notepad.prototype.filterNotesByQuery = function (query) {
-//   newArr = [];
-//   for (const value of this.notes) {
-//     const titleLower = value.title.toLowerCase();
-//     const bodyLower = value.body.toLowerCase();
-//     if (titleLower.includes(query) || bodyLower.includes(query)) {
-//       newArr.push(value);
-//     }
-//   }
-//   return newArr;
-// };
 
 Notepad.prototype.filterNotesByPriority = function (priority) {
   return this.notes.filter(el => el.priority === priority);
@@ -69,12 +49,19 @@ Notepad.prototype.deleteNote = function (id) {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(this.notes.splice(this.notes.findIndex(el => el.id === id), 1));
-    });
+    }, 0.0005);
   });
 };
 
-Notepad.prototype.addLocalStorage = function () {
-  localStorage.setItem('arrAll', 123);
+Notepad.prototype.saveLocalStorage = function (val) {
+  console.log(val);
+  window.localStorage.setItem('locStor', JSON.stringify(val));
+};
+
+Notepad.prototype.getLocalStorage = function () {
+  const myStorJSON = window.localStorage.getItem('locStor');
+  const myStore = JSON.parse(myStorJSON);
+  return myStore;
 };
 
 export default Notepad;
