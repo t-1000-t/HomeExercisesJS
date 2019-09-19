@@ -6,6 +6,4 @@ const showMicroModal = () => {
   MicroModal.show('note-editor-modal');
 };
 
-// const close = MicroModal.close('note-editor-modal'); // [2]
-
 export default showMicroModal;

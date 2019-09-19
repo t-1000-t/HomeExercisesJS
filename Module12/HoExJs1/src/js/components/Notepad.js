@@ -1,5 +1,3 @@
-import notepad from '../mvc/model';
-
 function Notepad(notes = []) {
   this.notes = notes;
 }

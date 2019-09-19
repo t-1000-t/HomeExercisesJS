@@ -36,6 +36,5 @@ function appNote(e) {
     duration: 3000,
     icon: true,
   });
-  // notepad.saveNote().then(console.log('OK'));
 }
 export default appNote;
